@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:up_todo/core/utils/app_assets.dart';
+import 'package:up_todo/features/presentation/screens/on_boarding_screens/on_boarding_screen.dart';
 
-import '../core/utils/app_colors.dart';
 import '../core/utils/app_texts.dart';
-
+import '../features/presentation/screens/splash_screen/splash_screen.dart';
+GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 class UpTodo extends StatelessWidget {
   const UpTodo({super.key});
 
@@ -11,14 +11,15 @@ class UpTodo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       title: AppTexts.appTitle,
       debugShowCheckedModeBanner: false,
+      routes: {
+        'Splash': (context) => SplashScreen(),
+        'OnBoarding': (context) => OnBoardingScreen(),
+      },
 
-
-      home: Scaffold(
-        backgroundColor: AppColors.backgroundColor,
-        body: Center(child: Image.asset(AppAssets.logo),),
-      ),
+      home: SplashScreen(),
     );
   }
 }
