@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:up_todo/features/presentation/screens/on_boarding_screens/on_boarding_screen.dart';
 
+import '../core/theme/theme.dart';
 import '../core/utils/app_texts.dart';
-import '../features/presentation/screens/splash_screen/splash_screen.dart';
+import '../features/auth/presentation/screens/on_boarding_screens/on_boarding_screen.dart';
+import '../features/auth/presentation/screens/splash_screen/splash_screen.dart';
+import '../features/task/presentation/screens/home_screen.dart';
+
 GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+
 class UpTodo extends StatelessWidget {
   const UpTodo({super.key});
 
@@ -17,7 +21,11 @@ class UpTodo extends StatelessWidget {
       routes: {
         'Splash': (context) => SplashScreen(),
         'OnBoarding': (context) => OnBoardingScreen(),
+        'home': (context) => HomeScreen(),
       },
+      theme: getAppThemeData(),
+      darkTheme: getAppDarkThemeData(),
+      themeMode: ThemeMode.light,
 
       home: SplashScreen(),
     );
