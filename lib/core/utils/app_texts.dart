@@ -6,7 +6,7 @@ class AppTexts {
   static const String getStarted = 'Get Started';
   static const String onBoardingTitle1 = 'Manage your tasks';
   static const String onBoardingSubTitle1 =
-      "You can easily manage all of your daily tasks in DoMe for free";
+      'You can easily manage all of your daily tasks in DoMe for free';
   static const String onBoardingTitle2 = 'Create daily routine';
   static const String onBoardingSubTitle2 =
       'In Uptodo  you can create your personalized routine to stay productive';
@@ -31,7 +31,7 @@ class AppTexts {
   static const String taskCompleted = 'Task Completed';
   static const String deleteTask = 'Delete Task';
   static const String cancel = 'Cancel';
-  static const String onBoardingKey = 'onBoaring';
+  static const String onBoardingKey = 'onBoarding';
   static const String noteErrorMsg = 'Enter Valid Note';
-  static const String tilteErrorMsg = 'Enter Valid title';
+  static const String titleErrorMsg = 'Enter Valid title';
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../core/theme/theme.dart';
-import '../core/utils/app_texts.dart';
-import '../features/auth/presentation/screens/on_boarding_screens/on_boarding_screen.dart';
-import '../features/auth/presentation/screens/splash_screen/splash_screen.dart';
-import '../features/task/presentation/screens/home_screen.dart';
+import 'package:up_todo/core/theme/theme.dart';
+import 'package:up_todo/core/utils/app_texts.dart';
+import 'package:up_todo/features/auth/presentation/screens/on_boarding_screens/on_boarding_screen.dart';
+import 'package:up_todo/features/auth/presentation/screens/splash_screen/splash_screen.dart';
+import 'package:up_todo/features/task/presentation/screens/home_screen.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -19,15 +19,15 @@ class UpTodo extends StatelessWidget {
       title: AppTexts.appTitle,
       debugShowCheckedModeBanner: false,
       routes: {
-        'Splash': (context) => SplashScreen(),
-        'OnBoarding': (context) => OnBoardingScreen(),
-        'home': (context) => HomeScreen(),
+        'Splash': (context) => const SplashScreen(),
+        'OnBoarding': (context) => const OnBoardingScreen(),
+        'Home': (context) => const HomeScreen(),
       },
       theme: getAppThemeData(),
       darkTheme: getAppDarkThemeData(),
       themeMode: ThemeMode.light,
 
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

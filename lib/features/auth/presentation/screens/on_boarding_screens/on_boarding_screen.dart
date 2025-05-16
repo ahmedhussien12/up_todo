@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:up_todo/core/database/cache/cache_helper.dart';
+import 'package:up_todo/core/services/service_locator.dart';
 import 'package:up_todo/core/utils/app_colors.dart';
 import 'package:up_todo/core/utils/app_texts.dart';
-
-import '../../../data/model/on_boarding_model.dart';
+import 'package:up_todo/core/widgets/custom_elevated_button.dart';
+import 'package:up_todo/core/widgets/custom_text_button.dart';
+import 'package:up_todo/features/auth/data/model/on_boarding_model.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -30,31 +33,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     //skip text
-                    index == 2
-                        ? SizedBox(height: 54)
-                        : Align(
+                    if (index == 2) const SizedBox(height: 54) else Align(
                           alignment: Alignment.centerLeft,
-                          child: TextButton(
-                            onPressed: () {
-                              controller.jumpToPage(2);
-                            },
-                            child: Text(
-                              AppTexts.skip,
-                              style: Theme.of(
-                                context,
-                              ).textTheme.displaySmall!.copyWith(
-                                color: AppColors.textColor.withAlpha(
-                                  (0.44 * 255).toInt(),
-                                ),
-                              ),
-                            ),
-                          ),
+                          child: CustomTextButton(text: AppTexts.skip,
+                          onPressed: () {
+                            controller.jumpToPage(2);
+                          },),
                         ),
 
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     //image
                     Image.asset(OnBoardingModel.onBoardingList[index].image),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     SmoothPageIndicator(
                       controller: controller,
                       count: 3,
@@ -66,17 +56,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
                         dotHeight: 4,
                         dotWidth: 26,
-                        spacing: 8,
                       ),
                     ),
                     //dots
-                    SizedBox(height: 70),
+                    const SizedBox(height: 70),
                     // title
                     Text(
                       OnBoardingModel.onBoardingList[index].title,
                       style: Theme.of(context).textTheme.displayLarge,
                     ),
-                    SizedBox(height: 42),
+                    const SizedBox(height: 42),
                     // subtitle
                     Text(
                       OnBoardingModel.onBoardingList[index].subTitle,
@@ -89,57 +78,37 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 100),
+                    const SizedBox(height: 100),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // back button
-                        index == 0
-                            ? Container()
-                            : TextButton(
-                              onPressed: () {
-                                controller.previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeIn,
-                                );
-                              },
-                              child: Text(
-                                AppTexts.back,
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.displaySmall!.copyWith(
-                                  color: AppColors.textColor.withAlpha(
-                                    (0.44 * 255).toInt(),
-                                  ),
-                                ),
-                              ),
-                            ),
+                        if (index == 0) Container() else CustomTextButton(text: AppTexts.back,
+                                onPressed: () {
+                                  controller.previousPage(
+                                    duration: const Duration(milliseconds: 500),
+                                    curve: Curves.easeIn,);
+                            },),
                         // next button
-                        index != 2
-                            ? ElevatedButton(
-                              onPressed: () {
-                                controller.nextPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeIn,
-                                );
-                              },
-                              style:
-                                  Theme.of(context).elevatedButtonTheme.style,
-                              child: Text(AppTexts.next),
-                            )
-                            : ElevatedButton(
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(context, 'home');
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.primaryColor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                              ),
-                              child: Text(AppTexts.getStarted),
-                            ),
+                        if (index != 2) CustomTextButton(text: AppTexts.next,
+                                onPressed: () {
+                                  controller.nextPage(
+                                    duration: const Duration(milliseconds: 500),
+                                    curve: Curves.easeIn,
+                                  );
+                            },) else CustomElevatedButton(text: AppTexts.getStarted,
+                                onPressed: () async {
+                                  await sl<CacheHelper>()
+                                      .saveData(key: AppTexts.onBoardingKey, value: true)
+                                      .then((value) {
+                                        Navigator.pushReplacementNamed(
+                                          context,
+                                          'Home',
+                                        );
+                                      });
+                            },),
+
                       ],
                     ),
                   ],

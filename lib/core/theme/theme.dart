@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../utils/app_colors.dart';
+import 'package:up_todo/core/utils/app_colors.dart';
 
 ThemeData getAppThemeData() {
   return ThemeData(
     scaffoldBackgroundColor: AppColors.backgroundColor,
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       centerTitle: true,
       backgroundColor: AppColors.backgroundColor,
       elevation: 0,
@@ -26,13 +26,16 @@ ThemeData getAppThemeData() {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       ),
     ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: AppColors.primaryColor,
+    ),
   );
 }
 
 ThemeData getAppDarkThemeData() {
   return ThemeData(
     scaffoldBackgroundColor: AppColors.c1,
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       centerTitle: true,
       backgroundColor: AppColors.backgroundColor,
       elevation: 0,

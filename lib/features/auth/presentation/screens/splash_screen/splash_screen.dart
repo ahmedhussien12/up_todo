@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:up_todo/core/database/cache/cache_helper.dart';
+import 'package:up_todo/core/services/service_locator.dart';
+import 'package:up_todo/core/utils/app_assets.dart';
 import 'package:up_todo/core/utils/app_texts.dart';
-
-import '../../../../../core/utils/app_assets.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -19,10 +20,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigateToOnBoarding() {
+    final bool isVisited = sl<CacheHelper>().getData(key: AppTexts.onBoardingKey) ?? false;
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
         // <=
-        Navigator.pushReplacementNamed(context, 'OnBoarding');
+
+       isVisited ? Navigator.pushReplacementNamed(context, 'Home') : Navigator.pushReplacementNamed(context, 'OnBoarding');
       }
     });
   }
@@ -36,11 +39,11 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(AppAssets.logo),
-            SizedBox(height: 35),
+            const SizedBox(height: 35),
             Text(
               AppTexts.appTitle,
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                fontSize: 40
+                fontSize: 40,
               ),
             ),
           ],

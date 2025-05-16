@@ -1,16 +1,16 @@
-import '../../../../core/utils/app_assets.dart';
-import '../../../../core/utils/app_texts.dart';
+import 'package:up_todo/core/utils/app_assets.dart';
+import 'package:up_todo/core/utils/app_texts.dart';
 
 class OnBoardingModel {
-  final String image;
-  final String title;
-  final String subTitle;
 
   OnBoardingModel({
     required this.image,
     required this.title,
     required this.subTitle,
   });
+  final String image;
+  final String title;
+  final String subTitle;
 
   static List<OnBoardingModel> onBoardingList = [
     OnBoardingModel(
