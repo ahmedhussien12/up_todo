@@ -1,10 +1,9 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:up_todo/core/utils/app_assets.dart';
-import 'package:up_todo/core/utils/app_texts.dart';
 
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/widgets/task_components.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,7 +12,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, 'AddTask');
+        },
         child: const Icon(Icons.add),
       ),
       body: SafeArea(
@@ -36,7 +37,8 @@ class HomeScreen extends StatelessWidget {
                 ).textTheme.displayLarge!.copyWith(fontSize: 24),
               ),
               SizedBox(height: 6),
-              SizedBox(height: 110,
+              SizedBox(
+                height: 110,
                 child: DatePicker(
                   DateTime.now(),
                   initialSelectedDate: DateTime.now(),
@@ -45,31 +47,18 @@ class HomeScreen extends StatelessWidget {
                   dayTextStyle: Theme.of(context).textTheme.displayMedium!,
                   dateTextStyle: Theme.of(context).textTheme.displayMedium!,
                   monthTextStyle: Theme.of(context).textTheme.displayMedium!,
-                  onDateChange: (date) {
-                  },
+                  onDateChange: (date) {},
                 ),
               ),
               SizedBox(height: 11),
-              noTasksWidget(context),
-
-
+              TaskComponent(),
             ],
           ),
         ),
       ),
     );
   }
-
-  Column noTasksWidget(BuildContext context) {
-    return Column(
-              children: [
-
-                Image.asset(AppAssets.noTasks),
-                SizedBox(height: 10,),
-                Text(AppTexts.noTaskTitle, style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 20),),
-                SizedBox(height: 10,),
-                Text(AppTexts.noTaskSubTitle, style: Theme.of(context).textTheme.displayMedium,),
-              ],
-            );
-  }
 }
+
+
+

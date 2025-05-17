@@ -6,6 +6,8 @@ import 'package:up_todo/features/auth/presentation/screens/on_boarding_screens/o
 import 'package:up_todo/features/auth/presentation/screens/splash_screen/splash_screen.dart';
 import 'package:up_todo/features/task/presentation/screens/home_screen.dart';
 
+import '../features/add_task/presentation/screens/add_task.dart';
+
 GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
 class UpTodo extends StatelessWidget {
@@ -22,6 +24,7 @@ class UpTodo extends StatelessWidget {
         'Splash': (context) => const SplashScreen(),
         'OnBoarding': (context) => const OnBoardingScreen(),
         'Home': (context) => const HomeScreen(),
+        'AddTask': (context) => const AddTask(),
       },
       theme: getAppThemeData(),
       darkTheme: getAppDarkThemeData(),

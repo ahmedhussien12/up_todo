@@ -35,11 +35,7 @@ ThemeData getAppThemeData() {
 ThemeData getAppDarkThemeData() {
   return ThemeData(
     scaffoldBackgroundColor: AppColors.c1,
-    appBarTheme: const AppBarTheme(
-      centerTitle: true,
-      backgroundColor: AppColors.backgroundColor,
-      elevation: 0,
-    ),
+
     textTheme: TextTheme(
       displayLarge: GoogleFonts.lato(
         fontSize: 32,
@@ -55,5 +51,6 @@ ThemeData getAppDarkThemeData() {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       ),
     ),
+
   );
 }

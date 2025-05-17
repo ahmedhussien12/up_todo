@@ -10,7 +10,8 @@ class AppColors {
   static const c4 = Color(0xff4181CC);
   static const c5 = Color(0xffCC8441);
   static const c6 = Color(0xff9741CC);
-  static const textFilled = Color(0xff1D1D1D);
   static const textFilledBorder = Color(0xff979797);
   static const bottomSheetBackground = Color(0xff424242);
+  static const deleteTaskColor = Color(0xffE57373);
+  static const textFilledFillColor = Color(0xff1D1D1D);
 }
